@@ -51,6 +51,9 @@ $hotels = [
 
 <body>
 
+<?php 
+    include './partials/header.php'
+?>
 
     <div class="table-container">
 
