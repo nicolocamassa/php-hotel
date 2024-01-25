@@ -36,6 +36,21 @@ $hotels = [
         'distance_to_center' => 50
     ],
 ];
+
+    $filterHotel = $hotels;
+    if(isset($_GET['parkFilter'])){
+        $hotelPark = [];
+
+        foreach($hotels as $hotel){
+            if($hotel['parking'] == $_GET['parkFilter']){
+                $hotelPark[] = $hotel;
+            }
+        }
+
+        $filterHotel = $hotelPark;
+
+
+    }
 ?>
 
 <!DOCTYPE html>
@@ -56,36 +71,52 @@ $hotels = [
     ?>
 
     <main>
-        <div class="table-container">
+        <div class="container">
+            <div class="row">
+                <div class="col-3">
+                    <form action="index.php" method="GET" class="d-flex">
+                        <select class="form-select" name="parkFilter">
+                            <option value="">Parcheggio</option>
+                            <option value="1">Sì</option>
+                            <option value="0">No</option>
+                        </select>
+                        <button type="submit" class="btn btn-success ms-2">Cerca</button>
+                    </form>
+                </div>
+            </div>
 
-            <table class="table table-striped">
-                <tr>
-                    <th>Nome</th>
-                    <th>Descrizione</th>
-                    <th>Parcheggio</th>
-                    <th>Voto</th>
-                    <th>Distanza dal centro</th>
-                </tr>
-                <?php
-                foreach ($hotels as $hotel) {
-                    echo "<tr>";
-                    foreach ($hotel as $key => $value) {
+            <div class="table-container mt-3">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Nome</th>
+                        <th>Descrizione</th>
+                        <th>Parcheggio</th>
+                        <th>Voto</th>
+                        <th>Distanza dal centro</th>
+                    </tr>
+                    <?php
+                    foreach ($filterHotel as $hotel) {
+                        echo "<tr>";
+                        foreach ($hotel as $key => $value) {
 
 
-                        if ($key === 'parking') {
-                            echo $value ? '<td>Si</td>' : '<td>No</td>';
-                        } elseif ($key == 'distance_to_center') {
-                            echo "<td>{$value} Km</td>";
-                        } else {
-                            echo "<td>{$value}</td>";
+                            if ($key === 'parking') {
+                                echo $value ? '<td>Si</td>' : '<td>No</td>';
+                            } elseif ($key == 'distance_to_center') {
+                                echo "<td>{$value} Km</td>";
+                            } else {
+                                echo "<td>{$value}</td>";
+                            }
                         }
+                        echo "</tr>";
                     }
-                    echo "</tr>";
-                }
-                ?>
+                    ?>
 
-            </table>
+                </table>
+            </div>
         </div>
+
+
     </main>
 
 
