@@ -45,20 +45,40 @@ $hotels = [
     <meta charset="UTF-8">
     <link rel="stylesheet" href="./css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <title>Hotel list</title>
 </head>
 
 <body>
-    <?php 
-        foreach($hotels as $hotel){
-            foreach($hotel as $key => $value){
-                echo "<div>".$value."</div>";
+
+
+    <div class="table-container">
+
+        <table class="table table-striped">
+            <tr>
+                <th>Nome</th>
+                <th>Descrizione</th>
+                <th>Parcheggio</th>
+                <th>Voto</th>
+                <th>Distanza dal centro</th>
+            </tr>
+            <?php
+            foreach ($hotels as $hotel) {
+                echo "<tr>";
+                foreach ($hotel as $key => $value) {
+                    echo "<td>{$value}</td>";
+
+                }
+                echo "</tr>";
             }
-        }
-    ?>
+            ?>
+    
+        </table>
+    </div>
     <!-- TODO: 1. Stampare tutte le info di $hotels -->
     <!--       2. Aggiungere i dati dell'array in una tabella
                3. BONUS -->
+
 </body>
 
 </html>
