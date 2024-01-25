@@ -66,8 +66,16 @@ $hotels = [
             foreach ($hotels as $hotel) {
                 echo "<tr>";
                 foreach ($hotel as $key => $value) {
-                    echo "<td>{$value}</td>";
+                    
 
+                    if($key === 'parking'){
+                        echo $value ? '<td>Si</td>' : '<td>No</td>';
+                    }elseif($key == 'distance_to_center'){
+                        echo "<td>{$value} Km</td>";
+                    }
+                    else{
+                        echo "<td>{$value}</td>";
+                    }
                 }
                 echo "</tr>";
             }
