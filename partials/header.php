@@ -7,7 +7,20 @@
 </head>
 <body>
     <header>
-        
+        <div class="site-title">
+            hotelfind
+        </div>
+        <div class="menu">
+            <ul class="m-0 p-0">
+                <li style="color: rgb(33, 62, 116);">Home</li>
+                <li>Cerca</li>
+                <li>Informazioni</li>
+                <li>Check-in</li>
+            </ul>
+        </div>
+        <div class="login">
+            Login
+        </div>
     </header>
 </body>
 </html>

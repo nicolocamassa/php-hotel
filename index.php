@@ -51,44 +51,47 @@ $hotels = [
 
 <body>
 
-<?php 
-    include './partials/header.php'
-?>
+    <?php
+    require_once './partials/header.php'
+    ?>
 
-    <div class="table-container">
+    <main>
+        <div class="table-container">
 
-        <table class="table table-striped">
-            <tr>
-                <th>Nome</th>
-                <th>Descrizione</th>
-                <th>Parcheggio</th>
-                <th>Voto</th>
-                <th>Distanza dal centro</th>
-            </tr>
-            <?php
-            foreach ($hotels as $hotel) {
-                echo "<tr>";
-                foreach ($hotel as $key => $value) {
-                    
+            <table class="table table-striped">
+                <tr>
+                    <th>Nome</th>
+                    <th>Descrizione</th>
+                    <th>Parcheggio</th>
+                    <th>Voto</th>
+                    <th>Distanza dal centro</th>
+                </tr>
+                <?php
+                foreach ($hotels as $hotel) {
+                    echo "<tr>";
+                    foreach ($hotel as $key => $value) {
 
-                    if($key === 'parking'){
-                        echo $value ? '<td>Si</td>' : '<td>No</td>';
-                    }elseif($key == 'distance_to_center'){
-                        echo "<td>{$value} Km</td>";
+
+                        if ($key === 'parking') {
+                            echo $value ? '<td>Si</td>' : '<td>No</td>';
+                        } elseif ($key == 'distance_to_center') {
+                            echo "<td>{$value} Km</td>";
+                        } else {
+                            echo "<td>{$value}</td>";
+                        }
                     }
-                    else{
-                        echo "<td>{$value}</td>";
-                    }
+                    echo "</tr>";
                 }
-                echo "</tr>";
-            }
-            ?>
-    
-        </table>
-    </div>
-    <!-- TODO: 1. Stampare tutte le info di $hotels -->
-    <!--       2. Aggiungere i dati dell'array in una tabella
-               3. BONUS -->
+                ?>
+
+            </table>
+        </div>
+    </main>
+
+
+    <?php
+    require_once './partials/footer.php'
+    ?>
 
 </body>
 
