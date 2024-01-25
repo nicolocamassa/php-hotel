@@ -33,9 +33,13 @@ $hotels = [
         'description' => 'Hotel Milano Descrizione',
         'parking' => true,
         'vote' => 2,
-        'distance_to_center' => 50
+        'distance_to_center' => 50,
+        /* 'keys_it' => [
+            'name' => 'nome'
+        ] */
     ],
 ];
+
 
     $filterHotel = $hotels;
     if(isset($_GET['parkFilter'])){
@@ -48,6 +52,19 @@ $hotels = [
         }
 
         $filterHotel = $hotelPark;
+    }
+
+    
+    if (isset($_GET['voteFilter'])) {
+        $hotelVote = [];
+    
+        foreach ($filterHotel as $hotel) {
+            if ($hotel['vote'] >= $_GET['voteFilter']) {
+                $hotelVote[] = $hotel;
+            }
+        }
+    
+        $filterHotel = $hotelVote;
     }
 ?>
 
@@ -71,12 +88,20 @@ $hotels = [
     <main>
         <div class="container">
             <div class="row">
-                <div class="col-3">
+                <div class="col-4">
                     <form action="index.php" method="GET" class="d-flex">
                         <select class="form-select" name="parkFilter">
                             <option value="">Parcheggio</option>
                             <option value="1">Sì</option>
                             <option value="0">No</option>
+                        </select>
+                        <select class="form-select ms-2" name="voteFilter">
+                            <option value="">Voto</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
                         </select>
                         <button type="submit" class="btn btn-success ms-2">Cerca</button>
                     </form>
@@ -92,6 +117,7 @@ $hotels = [
                             foreach($hotels as $hotel){
                                 if($flag === true){
                                     foreach($hotel as $key => $value){
+                                        /* FIXME: La traduzione è statica */
                                         switch($key){
                                             case 'name':
                                                 $key = 'Nome';
