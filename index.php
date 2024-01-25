@@ -92,6 +92,25 @@ $hotels = [
                             foreach($hotels as $hotel){
                                 if($flag === true){
                                     foreach($hotel as $key => $value){
+                                        switch($key){
+                                            case 'name':
+                                                $key = 'Nome';
+                                                break;
+                                            case 'description':
+                                                $key = 'Descrizione';
+                                                break;
+                                            case 'parking':
+                                                $key = 'Parcheggio';
+                                                break;
+                                            case 'vote':
+                                                $key = 'Voto';
+                                                break;
+                                            case 'distance_to_center':
+                                                $key = 'Distanza dal centro';
+                                                break;
+                                            default: 
+                                                break;
+                                        }
                                         echo "<th>{$key}</th>";
                                     }
                                 }
