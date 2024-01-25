@@ -48,8 +48,6 @@ $hotels = [
         }
 
         $filterHotel = $hotelPark;
-
-
     }
 ?>
 
@@ -88,18 +86,28 @@ $hotels = [
             <div class="table-container mt-3">
                 <table class="table table-striped">
                     <tr>
-                        <th>Nome</th>
+                        <?php 
+                            $flag = true;
+
+                            foreach($hotels as $hotel){
+                                if($flag === true){
+                                    foreach($hotel as $key => $value){
+                                        echo "<th>{$key}</th>";
+                                    }
+                                }
+                                $flag = false;
+                            }
+                        ?>
+<!--                         <th>Nome</th>
                         <th>Descrizione</th>
                         <th>Parcheggio</th>
                         <th>Voto</th>
-                        <th>Distanza dal centro</th>
+                        <th>Distanza dal centro</th> -->
                     </tr>
                     <?php
                     foreach ($filterHotel as $hotel) {
                         echo "<tr>";
                         foreach ($hotel as $key => $value) {
-
-
                             if ($key === 'parking') {
                                 echo $value ? '<td>Si</td>' : '<td>No</td>';
                             } elseif ($key == 'distance_to_center') {
